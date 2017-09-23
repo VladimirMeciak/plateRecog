@@ -1,0 +1,39 @@
+
+    {% extends 'base.html' %}
+    {% block title %}Home{% endblock title %}
+    {% block nav-style %}mkt-nav{% endblock nav-style %}
+
+    {% block content %}
+    <div class="container-fluid">
+
+
+
+        <main class=" ml-sm-auto  pt-3" role="main">
+              {% if form.instance.pk == None %}
+              <h2>Novy profil navstevnika</h2>
+              {% else  %}
+              <h2>Uprava navstevnikoveho profilu</h2>
+              {% endif  %}
+
+              <form method="POST" class="post-form">{% csrf_token %}
+                <div class="row" >
+
+                      <div class="col-sm-4">
+                 {% include 'includes/bs4_form.html' with form=form %}
+                 </div>
+
+
+
+
+
+               </div>
+               <hr>
+                  <button type="submit" class="save btn btn-default">Ulozit</button>
+              <hr>
+              </form>
+
+        </main>
+
+    </div>
+
+    {% endblock content %}

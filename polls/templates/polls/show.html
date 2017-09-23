@@ -1,0 +1,29 @@
+
+    {% extends 'base.html' %}
+    {% block title %}Home{% endblock title %}
+    {% block nav-style %}mkt-nav{% endblock nav-style %}
+
+    {% block content %}
+    <img id="frame" src="http://192.168.1.21:8080/shot.jpg">
+
+    <script>
+        // Use an off-screen image to load the next frame.
+        var img = new Image();
+
+        // When it is loaded...
+        img.addEventListener("load", function() {
+
+            // Set the on-screen image to the same source. This should be instant because
+            // it is already loaded.
+            document.getElementById("frame").src = img.src;
+
+            // Schedule loading the next frame.
+            setTimeout(function() {
+                img.src = "http://192.168.1.21:8080/shot.jpg?" + (new Date).getTime();
+            }, 1000/3); // 15 FPS (more or less)
+        })
+
+        // Start the loading process.
+        img.src = "http://192.168.1.21:8080/shot.jpg?" + (new Date).getTime();
+    </script>
+    {% endblock content %}

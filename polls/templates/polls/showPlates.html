@@ -1,0 +1,51 @@
+
+    {% extends 'base.html' %}
+    {% block title %}Home{% endblock title %}
+    {% block nav-style %}mkt-nav{% endblock nav-style %}
+
+    {% block content %}
+    <div class="container-fluid">
+
+
+
+        <main class=" ml-sm-auto  pt-3" role="main">
+          <h1>Zoznam zaznamov SPZ</h1>
+
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Majitel</th>
+                  <th>SPZ</th>
+                  <th>Upravena SPZ</th>
+                  <th>Cas</th>
+                  <th>ObrazokORIGINAL</th>
+                  <th>ObrazokCORRECTED</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for plate in plates_l %}
+            <tr>
+              <td>{{ forloop.counter }}.</td>
+              <td><a href="{% url 'polls:detail_visitor' spz=plate.visitor.spz %}">{{ plate.visitor }}</a></td>
+              <td><a href="{% url 'polls:detail_plate' pk=plate.pk %}">{{ plate.spz }}</a></td>
+              <td>{{ plate.corrSpz }}</td>
+              <td>{{ plate.cap_date }}</td>
+              <td><img src="{{plate.image.url}}" ></td>
+              <td><img src="{{plate.corr.url}}" ></td>
+
+            </tr>
+
+
+          {% endfor %}
+
+              </tbody>
+            </table>
+          </div>
+
+        </main>
+
+    </div>
+
+    {% endblock content %}

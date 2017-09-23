@@ -1,0 +1,165 @@
+
+    {% extends 'base.html' %}
+    {% block title %}Visitor profile{% endblock title %}
+    {% block nav-style %}mkt-nav{% endblock nav-style %}
+
+{% block content %}
+<div class="w3-container-padding">
+
+
+  <!-- Page Container -->
+  <div class="w3-content w3-margin-top" style="max-width:1400px;">
+      <h1>Profil navstevnika</h1>
+    <!-- The Grid -->
+    <div class="w3-row-padding">
+
+      <!-- Left Column -->
+      <div class="w3-quarter">
+
+        <div class="w3-white w3-text-grey w3-card-4">
+          <div class="w3-display-container">
+            <img src="{{visitor.profile_image.url}}" style="width:100%" alt="Avatar">
+            <div class="w3-display-bottomleft w3-container w3-text-black">
+              <h2>{{ visitor.name }}</h2>
+            </div>
+          </div>
+          <br>
+          <div class="w3-container">
+            <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i><b>SPZ  </b>  {{visitor.spz}}</p>
+            <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>Pozicia</p>
+            <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>Mail</p>
+            <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>Cislo</p>
+            <hr>
+
+            <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Komentar</b></p>
+            <p>{{visitor.comment}}</p>
+            <hr>
+
+            <p class="w3-large w3-text-theme"><b><i class="fa fa-globe fa-fw w3-margin-right w3-text-teal"></i>Povolenie na vjazd</b></p>
+            <p><b>Datum od  </b>{{ visitor.allowed_date_from }}</p>
+
+            <p><b>Datum do  </b>{{ visitor.allowed_date_to }}</p>
+
+            <p><b>Cas od  </b>{{ visitor.allowed_time_from }}</p>
+
+            <p><b>Cas do  </b>{{ visitor.allowed_time_to }}</p>
+            <hr>
+              <div class="w3-display-container">
+                <div class="w3-display-middle w3-container">
+
+                  <a class="btn btn-default" href="{% url 'polls:visitor_edit' spz=visitor.spz %}"><span class="glyphicon glyphicon-pencil"></span> Upravit profil navstevnika</a>
+
+               </div>
+            </div>
+          <hr>
+          </div>
+        </div><br>
+
+      <!-- End Left Column -->
+      </div>
+
+      <!-- Right Column -->
+      <div class="w3-threequarter">
+
+
+
+        <div class="w3-container w3-card-2 w3-white">
+          <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Zoznam poslednych vstupov</h2>
+          <div class="table-responsive" margin="20">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>SPZ</th>
+                  <th>Upravena SPZ</th>
+                  <th>Cas</th>
+                  <th>ObrazokORIGINAL</th>
+                  <th>ObrazokCORRECTED</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for plate in plates_l %}
+              <tr>
+              <td>{{ forloop.counter }}.</td>
+              <td><a href="{% url 'polls:detail_plate' pk=plate.pk %}">{{ plate.spz }}</a></td>
+              <td>{{ plate.corrSpz }}</td>
+              <td>{{ plate.cap_date }}</td>
+              <td><img src="{{plate.image.url}}" ></td>
+              <td><img src="{{plate.corr.url}}" ></td>
+            </tr>
+
+
+          {% endfor %}
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      <!-- End Right Column -->
+      </div>
+
+
+
+
+      <!-- second Right Column -->
+      <div class="w3-threequarter">
+
+
+
+        <div class="w3-container w3-card-2 w3-white">
+          <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Zoznam poslednych moznych vstupov</h2>
+          <div class="table-responsive" margin="20">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>SPZ</th>
+                  <th>Upravena SPZ</th>
+                  <th>Cas</th>
+                  <th>Podobnost</th>
+                  <th>ObrazokORIGINAL</th>
+                  <th>ObrazokCORRECTED</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for plate in all_plate %}
+
+              <tr>
+              <td>{{ forloop.counter }}.</td>
+              <td><a href="{% url 'polls:detail_plate' pk=plate.pk %}">{{ plate.spz }}</a></td>
+              <td>{{ plate.corrSpz }}</td>
+              <td>{{ plate.cap_date }}</td>
+              <td>{{ plate.similarity }}</td>
+              <td><img src="{{plate.image.url}}" ></td>
+              <td><img src="{{plate.corr.url}}" ></td>
+            </tr>
+
+
+          {% endfor %}
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      <!-- End  second Right Column -->
+      </div>
+
+
+
+
+
+
+
+
+
+
+    <!-- End Grid -->
+    </div>
+
+    <!-- End Page Container -->
+  </div>
+
+</div>
+{% endblock %}

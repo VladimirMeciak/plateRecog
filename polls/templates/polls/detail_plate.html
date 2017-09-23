@@ -1,0 +1,67 @@
+
+    {% extends 'base.html' %}
+    {% block title %}Plate detail{% endblock title %}
+    {% block nav-style %}mkt-nav{% endblock nav-style %}
+
+{% block content %}
+<div class="w3-container-padding">
+
+
+  <!-- Page Container -->
+  <div class="w3-content w3-margin-top" style="max-width:1400px;">
+      <h1>Detail zaznamu</h1>
+    <!-- The Grid -->
+    <div class="w3-row-padding ">
+      <div class="w3-quarter">
+        <p></p>
+     </div>
+      <!-- Left Column -->
+      <div class="w3-half">
+
+        <div class="w3-white w3-text-grey w3-card-4 w3-center">
+          <div class="w3-display-container">
+            <img src="{{plate.image.url}}" style="width:100%" alt="Avatar">
+            <div class="w3-display-bottomleft w3-container w3-text-black">
+              <h2></h2>
+            </div>
+          </div>
+          <br>
+          <div class="w3-container ">
+            <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i><b>Majitel  </b>  <a href="{% url 'polls:detail_visitor' spz=plate.visitor.spz %}">{{ plate.visitor }}</a></p>
+
+            <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i><b>SPZ  </b>  {{plate.spz}}</p>
+            <hr>
+            <form method="POST" class="post-form">{% csrf_token %}
+                   <div class="w3-row-padding ">
+                     <div class="w3-col s2 m3 l3 ">
+                       <p></p>
+                    </div>
+                     <div class="w3-col s8 m6 l6 ">
+                    {% include 'includes/bs4_form.html' with form=form %}
+                    </div>
+                    </div>
+                <button type="submit" class="save btn btn-default">Ulozit</button>
+
+            </form>
+            <hr>
+
+
+          </div>
+        </div>
+
+
+        <br>
+
+      <!-- End Left Column -->
+      </div>
+
+
+
+    <!-- End Grid -->
+    </div>
+
+    <!-- End Page Container -->
+  </div>
+
+</div>
+{% endblock %}

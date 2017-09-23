@@ -1,0 +1,129 @@
+{# HTML5 declaration #}
+<!DOCTYPE html>
+<html>
+    {# Make modifiableczzzZZZzzead elements #}
+    <head>
+        <title>{% block title %}Ip Cam {% endblock title %} | Licence Plate</title>
+        {% block head_favicon %}
+          <link rel="icon" href="{{ STATIC_URL }}images/favicon.ico">
+
+        {% endblock head_favicon %}
+        {% block head_meta %}
+            {% block head_meta_charset %}
+                <meta http-equiv="Content-Type"
+                      content="text/html; charset=utf-8" />
+            {% endblock head_meta_charset %}
+            {% block head_meta_contentlanguage %}
+                <meta http-equiv="Content-Language" value="en-US" />
+            {% endblock head_meta_contentlanguage %}
+            {% block head_meta_viewport %}
+                <meta name="viewport"
+                      content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+            {% endblock head_meta_viewport %}
+        {% endblock head_meta %}
+        {% block head_css %}
+            {% block head_css_site %}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+            <script src="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/master/src/js/bootstrap-datetimepicker.js"></script>
+            <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+            <link href="https://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/master/build/css/bootstrap-datetimepicker.css" rel="stylesheet"/>
+            <link href="{{STATIC_URL}}css/dashboard.css" rel="stylesheet">
+            <link href="{{STATIC_URL}}css/jumbotron.css" rel="stylesheet">
+            <link href="{{STATIC_URL}}css/sticky-footer.css" rel="stylesheet">
+            <link href="{{STATIC_URL}}css/w3.css" rel="stylesheet">
+            <!--link href="{{STATIC_URL}}css/bootstrap.css" rel="stylesheet">
+
+
+            <!--link href="{{STATIC_URL}}css/bootstrap.css" rel="stylesheet">
+
+            <link href="{{STATIC_URL}}css/datetimepicker.css" rel="stylesheet">
+            <link href="{{STATIC_URL}}css/bootstrap-datetimepicker.css" rel="stylesheet">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+            <script src="{{STATIC_URL}}js/popper.min.js"></script>
+            <script type="text/javascript" src="{{STATIC_URL}}js/bootstrap.js"></script>
+            <script type="text/javascript" src="{{STATIC_URL}}js/bootstrap-datetimepicker.js"></script-->
+            {% endblock head_css_site %}
+            {% block head_css_section %}{% endblock head_css_section %}
+            {% block head_css_page %}{% endblock head_css_page %}
+        {% endblock head_css %}
+    </head>
+
+
+    <body>
+    <div id="wrap">
+    {# Navigation Menu #}
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" >IP CAM Plate Recognition</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/polls">Home</a></li>
+            <li><a href="{% url 'polls:plates' %}">Zobrazit snimky </a></li>
+            <li><a href="{% url 'polls:visitors' %}">Zobrazit uzivatelov</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hladat<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Hladat nevstevnika</a></li>
+                <li><a href="#">Hladat zaznam</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nezaradene</li>
+                <li><a href="#">Zobrazit nezaradene</a></li>
+              </ul>
+            </li>
+          </ul>
+          <!--form class="navbar-form navbar-right">
+            <div class="form-group">
+              <input type="text" placeholder="Email" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-success">Sign in</button>
+          </form-->
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+
+    <header>
+
+
+    </header>
+    {# The Document Body #}
+    <div id="site-wrapper">
+        {% block content %}
+            if you see this, something is wrong!
+        {% endblock content %}
+    </div>
+    {# The Footer #}
+      </div>
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted text-center credit">IP CAM Plate Recognition by <a href="http://ditis.sk">Ditis </a> and <a href="http://google.sk">vmec</a>.</p>
+      </div>
+    </div>
+</body>
+
+
+
+{# Set of blocks that can be used to display JavaScript files #}
+{% block footer_javascript %}
+    {% block footer_javascript_site %}
+
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{{STATIC_URL}}js/ie10-viewport-bug-workaround.js"></script>
+    {% endblock footer_javascript_site %}
+    {% block footer_javascript_section %}{% endblock footer_javascript_section %}
+    {% block footer_javascript_page %}{% endblock footer_javascript_page %}
+{% endblock footer_javascript %}
+</html>
